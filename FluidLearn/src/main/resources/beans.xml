@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!-- specifica del database -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+		<!-- vedere come poter gestire le varie tabelle -->
+		<property name="url"
+			value="jdbc:derby://localhost:1527/books;create=true" />
+		<property name="username" value="app" />
+		<property name="password" value="app" />
+	</bean>
+
+	<!-- Specifica della session factory per le classi del model -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>org.fluidlearn.core.model.Node</value>
+				<value>org.fluidlearn.core.model.Post</value>
+				<value>org.fluidlearn.core.model.Person</value>
+				<value>org.fluidlearn.core.model.Plugin</value>
+				<value>org.fluidlearn.core.model.Testo</value>
+				<value>org.fluidlearn.core.model.User</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- da modificare se si usa MySql -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean name="NodeDao" class="org.fluidlearn.core.dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean name="PersonDao" class="org.fluidlearn.core.dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean name="PluginDao" class="org.fluidlearn.core.dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean name="PostDao" class="org.fluidlearn.core.dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean name="TestoDao" class="org.fluidlearn.core.dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+	<bean name="UserDao" class="org.fluidlearn.core.dao">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+
+
+
+	<!-- specifica del transictionalManager -->
+	<!-- responsabile delle transazioni. Crea e gestisce le transazioni attraverso 
+		un datasource Questo di Hibernate è in grado di operare tramite una session 
+		factory Occorre, inoltre, specificare le direttive di transazione tramite 
+		tx:annotation-driver -->
+
+	<tx:annotation-driven />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+</beans>
