@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+		
+	<!-- Definizione Advice -->			
+	<bean id="logBeforeAdvice" class="it.html.spring.aop.LogBeforeAdvice" />
+	<bean id="logAfterReturningAdvice" class="it.html.spring.aop.LogAfterReturningAdvice" />
+	<bean id="logThrowAdvice" class="it.html.spring.aop.LogThrowAdvice" />
+	<bean id="logAroundAdvice" class="it.html.spring.aop.LogAroundAdvice" />
+	
+	<!-- Definizione Proxy -->
+	<bean id="bookDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>it.html.spring.book.BookDao</value>
+			</list>
+		</property>
+		<property name="target" ref="bookDao" />
+		<property name="interceptorNames">
+			<list>								
+				<value>logBeforeAdvice</value>	
+				<value>logAfterReturningAdvice</value>	
+				<value>logThrowAdvice</value>				
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value>	-->
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Definizione de bean visti in precedenza  -->	
+	<bean id="bookDao" class="it.html.spring.book.BookDaoFake" />
+	
+</beans>
