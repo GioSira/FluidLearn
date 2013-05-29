@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
@@ -88,5 +87,122 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+
+
+	<!-- Proxy verso il target object per AOP -->
+
+	<bean id="NodeDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>org.fluidlearn.core.dao</value>
+			</list>
+		</property>
+		<property name="target" ref="NodeDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logThrowAdvice</value>
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante 
+					e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="PersonDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>org.fluidlearn.core.dao</value>
+			</list>
+		</property>
+		<property name="target" ref="PersonDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logThrowAdvice</value>
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante 
+					e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="PluginDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>org.fluidlearn.core.dao</value>
+			</list>
+		</property>
+		<property name="target" ref="PluginDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logThrowAdvice</value>
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante 
+					e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="UserDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>org.fluidlearn.core.dao</value>
+			</list>
+		</property>
+		<property name="target" ref="UserDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logThrowAdvice</value>
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante 
+					e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="PostDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>org.fluidlearn.core.dao</value>
+			</list>
+		</property>
+		<property name="target" ref="PostDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logThrowAdvice</value>
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante 
+					e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean id="TestoDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<list>
+				<value>org.fluidlearn.core.dao</value>
+			</list>
+		</property>
+		<property name="target" ref="TestoDao" />
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterReturningAdvice</value>
+				<value>logThrowAdvice</value>
+				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante 
+					e commentare i tre advice soprastanti -->
+				<!-- <value>logAroundAdvice</value> -->
+			</list>
+		</property>
+	</bean>
 
 </beans>
