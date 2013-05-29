@@ -21,11 +21,10 @@
 		<property name="target" ref="bookDao" />
 		<property name="interceptorNames">
 			<list>								
-				<value>logBeforeAdvice</value>	
+				<!-- value>logBeforeAdvice</value>	
 				<value>logAfterReturningAdvice</value>	
-				<value>logThrowAdvice</value>				
-				<!-- Per utilizzare l'Around Advice decommentare la riga sottostante e commentare i tre advice soprastanti -->
-				<!-- <value>logAroundAdvice</value>	-->
+				<value>logThrowAdvice</value -->				
+				<value>logAroundAdvice</value>
 			</list>
 		</property>
 	</bean>
