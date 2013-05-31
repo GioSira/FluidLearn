@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 public class User implements Serializable {
 	
-	private static final long serialVersionUID = -1308795024262635690L;
+	private static final long serialVersionUID = 0;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,12 +19,10 @@ public class User implements Serializable {
 	private String pwd;
 
 	public User() {
-		super();
+		this(null, null);
 	}
 
-	public User(Long id, String username, String pwd) {
-		super();
-		this.id = id;
+	public User(String username, String pwd) {
 		this.username = username;
 		this.pwd = pwd;
 	}
