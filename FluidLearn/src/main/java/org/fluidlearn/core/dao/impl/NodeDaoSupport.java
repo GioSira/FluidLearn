@@ -1,13 +1,15 @@
-package org.fluidlearn.core.dao.support;
+package org.fluidlearn.core.dao.impl;
 
 import java.util.List;
 
 import org.fluidlearn.core.dao.NodeDao;
 import org.fluidlearn.core.model.Node;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.fluidlearn.core.util.CustomHibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-public class NodeDaoSupport extends HibernateDaoSupport implements NodeDao {
+@Repository("stockDao")
+public class NodeDaoSupport extends CustomHibernateDaoSupport implements NodeDao {
 
 	@Transactional(readOnly = true)
 	public Node searchByPK(Long id) {

@@ -1,4 +1,4 @@
-package org.fluidlearn.core.dao.support;
+package org.fluidlearn.core.dao.impl;
 
 import java.util.List;
 
