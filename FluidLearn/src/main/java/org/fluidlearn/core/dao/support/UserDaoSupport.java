@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDaoSupport extends HibernateDaoSupport implements UserDao {
 
 	@Transactional(readOnly = true)
-	public User searchByPK(Long id) {
-		User u = getHibernateTemplate().get(User.class, id);
+	public User searchByPK(String name) {
+		User u = getHibernateTemplate().get(User.class, name);
 		return u;
 	}
 

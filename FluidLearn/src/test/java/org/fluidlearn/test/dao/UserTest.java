@@ -6,34 +6,52 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
-public class UserTest {
+import junit.framework.*;
+
+public class UserTest extends TestCase {
 	
-	public static void main(String[] args) {
-		
-	    BeanFactory ctx = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-	    UserDao userDao = (UserDao) ctx.getBean("userDaoProxy");
-	    
-	    // Insert
-	    User us1 = new User();
-	    us1.setUsername("Giovanni");
-	    us1.setPwd("pincopallo6");
-	    userDao.insert(us1);
-	    
-	    User us2 = new User();
-	    us2.setUsername("Geanina");
-	    us2.setPwd("caiomaio");
-	    userDao.insert(us2);
-	    
-	    // Update
-	    us2.setUsername("Geanina1");
-	    userDao.update(us2);
-	    
-	    // Delete
-	    userDao.delete(us1);
-	    
-	    // stampa DB
-	    
-		
+   private BeanFactory ctx = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+   private UserDao userDao = (UserDao) ctx.getBean("userDaoProxy");
+	
+	protected User user;
+	
+	public UserTest(String name) {
+		super(name);
+		user = new User();
+	}
+	
+	protected void setUp() {
+	    user.setUsername("Giovanni");
+	    user.setPwd("pincopallo");
+	    userDao.insert(user);
+	}
+	
+	public static Test suite() {
+		return new TestSuite(UserTest.class);
+	}
+	
+	public void testUsername() {
+		User usr = userDao.searchByPK("Giovanni");
+		assertEquals(usr.getUsername(), user.getUsername());
+	}
+	
+	public void testPwd() {
+		User usr = userDao.searchByPK("Giovanni");
+		assertEquals(usr.getPwd(), user.getPwd());
+	}
+	
+	public void testAdd() {
+		User u = new User();
+		u.setUsername("Geanina");
+		u.setPwd("caiomaio");
+		userDao.insert(u);
+		assert(userDao.searchByPK("Geanina") != null);
+	}
+	
+	public void testDelete() {
+		User u = userDao.searchByPK("Giovanni");
+		userDao.delete(u);
+		assert(userDao.searchByPK("Giovanni") == null);
 	}
 
 }

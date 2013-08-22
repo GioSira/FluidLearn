@@ -9,9 +9,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 0;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
 	@Column
 	private String username;
 	
@@ -25,14 +22,6 @@ public class User implements Serializable {
 	public User(String username, String pwd) {
 		this.username = username;
 		this.pwd = pwd;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getUsername() {
@@ -53,7 +42,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", pwd=" + pwd
+		return "User [username=" + username + ", pwd=" + pwd
 				+ "]";
 	}
 	

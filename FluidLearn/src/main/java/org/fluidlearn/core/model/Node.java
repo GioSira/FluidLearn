@@ -1,8 +1,8 @@
 package org.fluidlearn.core.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -19,13 +19,13 @@ public class Node implements Serializable {
 	private String title;
 
 	@ElementCollection
-	private Set<Node> father;
+	private List<Node> father;
 
 	public Node() {
 		super();
 	}
 
-	public Node(Long id, String title, Set<Node> father) {
+	public Node(Long id, String title, List<Node> father) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -48,12 +48,12 @@ public class Node implements Serializable {
 		this.title = title;
 	}
 
-	public Set<Node> getFather() {
+	public List<Node> getFather() {
 		return father;
 	}
 
-	public void setFather(Set<Node> father) {
-		this.father = father;
+	public void setFather(List<Node> fathers) {
+		this.father = fathers;
 	}
 
 	public static long getSerialversionuid() {
@@ -83,9 +83,9 @@ public class Node implements Serializable {
 		return null;
 	}
 
-	private Set<Node> getNodesInternal() {
+	private List<Node> getNodesInternal() {
 		if (this.father == null) {
-			return this.father = new HashSet<Node>();
+			return this.father = new ArrayList<Node>();
 		}
 		return this.father;
 	}

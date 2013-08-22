@@ -6,7 +6,7 @@ import org.fluidlearn.core.model.*;
 
 public interface UserDao {
 
-	public User searchByPK(Long id);
+	public User searchByPK(String name);
 	
 	public List<User> getAllUsers();
 
