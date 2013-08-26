@@ -2,10 +2,8 @@ package org.fluidlearn.core.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.persistence.Id;
+
 
 @Entity
 public class Node implements Serializable {
@@ -15,13 +13,13 @@ public class Node implements Serializable {
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "NODE_ID", unique = true, nullable = false)
+	@Column
 	private Long id;
 	
-	@Column(name = "NODE_TITLE", unique = true, nullable = false)
+	@Column
 	private String title;
 	
-	@Column(name = "NODE_FATHER", nullable = true)
+	@Column
 	private Node father;
 	//private List<Node> sons;
 

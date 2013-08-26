@@ -1,28 +1,24 @@
 package org.fluidlearn.test.dao;
 
+import static org.junit.Assert.*;
+
 import org.fluidlearn.core.dao.PostDao;
 import org.fluidlearn.core.model.Post;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+public class PostDaoTest {
 
-public class PostTest extends TestCase {
-
-	private BeanFactory ctx = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-    private PostDao postDao = (PostDao) ctx.getBean("postDaoProxy");
+	private ApplicationContext appContext = 
+    		new ClassPathXmlApplicationContext("spring/config/beans.xml");
+	 private PostDao postDao = (PostDao) appContext.getBean("postDao");
 	
-	protected Post post;
+	Post post = new Post();
 	
-	public PostTest(String name) {
-		super(name);
-		post = new Post();
-	}
-	
-	protected void setUp() {
+	@Before
+	public void setUp() {
 		post.setId(00147L);
 		post.setPersonID(004545L);
 		post.setPluginID(00415L);
@@ -31,29 +27,30 @@ public class PostTest extends TestCase {
 	    postDao.insert(post);
 	}
 	
-	public static Test suite() {
-		return new TestSuite(PostTest.class);
-	}
-	
+	@Test
 	public void testPersonID() {
 		assertEquals(postDao.searchByPK(00147L).getPersonID(), post.getPersonID());
 	}
 	
+	@Test
 	public void testPluginID() {
 		assertEquals(postDao.searchByPK(00147L).getPluginID(), post.getPluginID());
 	}
 	
+	@Test
 	public void testTestoID() {
 		assertEquals(postDao.searchByPK(00147L).getTestoID(), post.getTestoID());
 	}
 	
+	@Test
 	public void testTitolo() {
 		assertEquals(postDao.searchByPK(00147L).getTitolo(), post.getTitolo());
 	}
 	
+	@Test
 	public void testDelete() {
 		postDao.delete(postDao.searchByPK(00147L));
 		assert(postDao.searchByPK(00147L) == null);
 	}
-	
+
 }

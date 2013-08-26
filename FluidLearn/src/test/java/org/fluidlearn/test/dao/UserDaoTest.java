@@ -1,45 +1,42 @@
 package org.fluidlearn.test.dao;
 
+import static org.junit.Assert.*;
+
 import org.fluidlearn.core.dao.UserDao;
 import org.fluidlearn.core.model.User;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import junit.framework.*;
+public class UserDaoTest {
 
-public class UserTest extends TestCase {
+	private ApplicationContext appContext = 
+    		new ClassPathXmlApplicationContext("spring/config/beans.xml");
+    private UserDao userDao = (UserDao) appContext.getBean("userDao");
+    
+    private User user = new User();
 	
-   private BeanFactory ctx = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-   private UserDao userDao = (UserDao) ctx.getBean("userDaoProxy");
-	
-	protected User user;
-	
-	public UserTest(String name) {
-		super(name);
-		user = new User();
-	}
-	
-	protected void setUp() {
+    @Before
+	public void setUp() {
 	    user.setUsername("Giovanni");
 	    user.setPwd("pincopallo");
 	    userDao.insert(user);
 	}
 	
-	public static Test suite() {
-		return new TestSuite(UserTest.class);
-	}
-	
+    @Test
 	public void testUsername() {
 		User usr = userDao.searchByPK("Giovanni");
 		assertEquals(usr.getUsername(), user.getUsername());
 	}
 	
+    @Test
 	public void testPwd() {
 		User usr = userDao.searchByPK("Giovanni");
 		assertEquals(usr.getPwd(), user.getPwd());
 	}
 	
+    @Test
 	public void testAdd() {
 		User u = new User();
 		u.setUsername("Geanina");
@@ -48,10 +45,11 @@ public class UserTest extends TestCase {
 		assert(userDao.searchByPK("Geanina") != null);
 	}
 	
+    @Test
 	public void testDelete() {
 		User u = userDao.searchByPK("Giovanni");
 		userDao.delete(u);
-		assert(userDao.searchByPK("Giovanni") == null);
+		assertNull(userDao.searchByPK("Giovanni"));
 	}
 
 }
