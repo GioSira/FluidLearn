@@ -10,7 +10,7 @@ public class Plugin implements Serializable {
 	private static final long serialVersionUID = -1308795024262635690L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column

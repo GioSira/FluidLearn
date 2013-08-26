@@ -4,38 +4,46 @@ import java.util.List;
 
 import org.fluidlearn.core.dao.TestoDao;
 import org.fluidlearn.core.model.Testo;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-public class TestoDaoSupport extends HibernateDaoSupport implements TestoDao {
+public class TestoDaoSupport implements TestoDao {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	
 	@Transactional(readOnly = true)
 	public Testo searchByPK(Long id) {
-		Testo t = getHibernateTemplate().get(Testo.class, id);
+		Testo t = (Testo) getSessionFactory().getCurrentSession().get(Testo.class, id);
 		return t;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<Testo> getAllTesto() {
-		return getHibernateTemplate().find("from Testo");
+		return getSessionFactory().getCurrentSession().createQuery("from Testo").list();
 	}
 
 	@Transactional
 	public void insert(Testo t) {
-		getHibernateTemplate().saveOrUpdate(t);
+		getSessionFactory().getCurrentSession().saveOrUpdate(t);
 		
 	}
 
 	@Transactional
 	public void update(Testo t) {
-		getHibernateTemplate().saveOrUpdate(t);
+		getSessionFactory().getCurrentSession().saveOrUpdate(t);
 		
 	}
 	
 	@Transactional
 	public void delete(Testo t) {
-		getHibernateTemplate().delete(t);
+		getSessionFactory().getCurrentSession().delete(t);
 		
 	}
 

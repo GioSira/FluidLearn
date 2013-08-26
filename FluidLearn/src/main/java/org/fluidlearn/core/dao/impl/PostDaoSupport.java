@@ -4,38 +4,46 @@ import java.util.List;
 
 import org.fluidlearn.core.dao.PostDao;
 import org.fluidlearn.core.model.Post;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-public class PostDaoSupport extends HibernateDaoSupport implements PostDao {
+public class PostDaoSupport implements PostDao {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	
 	@Transactional(readOnly = true)
 	public Post searchByPK(Long id) {
-		Post p = getHibernateTemplate().get(Post.class, id);
+		Post p = (Post) getSessionFactory().getCurrentSession().get(Post.class, id);
 		return p;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<Post> getAllPost() {
-		return getHibernateTemplate().find("from Post");
+		return getSessionFactory().getCurrentSession().createQuery("from Post").list();
 	}
 
 	@Transactional
 	public void insert(Post p) {
-		getHibernateTemplate().saveOrUpdate(p);
+		getSessionFactory().getCurrentSession().saveOrUpdate(p);
 
 	}
 
 	@Transactional
 	public void update(Post p) {
-		getHibernateTemplate().saveOrUpdate(p);
+		getSessionFactory().getCurrentSession().saveOrUpdate(p);
 
 	}
 
 	@Transactional
 	public void delete(Post p) {
-		getHibernateTemplate().delete(p);
+		getSessionFactory().getCurrentSession().delete(p);
 
 	}
 

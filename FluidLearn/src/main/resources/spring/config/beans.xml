@@ -35,14 +35,21 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+	
+	<!-- creo i bean per le classi Dao -->
+	<bean id="personDao" class="org.fluidlearn.core.dao.impl.PersonDaoSupport"></bean>
+	<bean id="nodeDao" class="org.fluidlearn.core.dao.impl.NodeDaoSupport"></bean>
+	<bean id="pluginDao" class="org.fluidlearn.core.dao.impl.PluginDaoSupport"></bean>
+	<bean id="postDao" class="org.fluidlearn.core.dao.impl.PostDaoSupport"></bean>
+	<bean id="testoDao" class="org.fluidlearn.core.dao.impl.TestoDaoSupport"></bean>
+	<bean id="userDao" class="org.fluidlearn.core.dao.impl.UserDaoSupport"></bean>
 
 	<!-- Proxy verso il target object per AOP -->
 	
-		<!-- Abilitazione auto-proxy -->
-		<aop:aspectj-autoproxy proxy-target-class="true"/>
+		<!-- Abilitazione auto-proxy >
+		<aop:aspectj-autoproxy proxy-target-class="true"/-->
 	
-		<!-- Definizione LogAspect -->
-  		<bean class="org.fluidlearn.core.aop.LogAspect" />
+		<!-- Definizione LogAspect>
+  		<bean class="org.fluidlearn.core.aop.LogAspect" /-->
 
 </beans>

@@ -4,38 +4,46 @@ import java.util.List;
 
 import org.fluidlearn.core.dao.UserDao;
 import org.fluidlearn.core.model.User;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-public class UserDaoSupport extends HibernateDaoSupport implements UserDao {
+public class UserDaoSupport implements UserDao {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	
 	@Transactional(readOnly = true)
 	public User searchByPK(String name) {
-		User u = getHibernateTemplate().get(User.class, name);
+		User u = (User) getSessionFactory().getCurrentSession().get(User.class, name);
 		return u;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<User> getAllUsers() {
-		return getHibernateTemplate().find("from User");
+		return getSessionFactory().getCurrentSession().createQuery("from User").list();
 	}
 
 	@Transactional
 	public void insert(User u) {
-		getHibernateTemplate().saveOrUpdate(u);
+		getSessionFactory().getCurrentSession().saveOrUpdate(u);
 
 	}
 
 	@Transactional
 	public void update(User u) {
-		getHibernateTemplate().saveOrUpdate(u);
+		getSessionFactory().getCurrentSession().saveOrUpdate(u);
 
 	}
 
 	@Transactional
 	public void delete(User u) {
-		getHibernateTemplate().delete(u);
+		getSessionFactory().getCurrentSession().delete(u);
 
 	}
 

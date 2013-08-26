@@ -4,14 +4,22 @@ import java.util.List;
 
 import org.fluidlearn.core.dao.PluginDao;
 import org.fluidlearn.core.model.Plugin;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-public class PluginDaoSupport extends HibernateDaoSupport implements PluginDao {
+public class PluginDaoSupport implements PluginDao {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	
 	@Transactional(readOnly = true)
 	public Plugin searchByPK(Long id) {
-		Plugin p = getHibernateTemplate().get(Plugin.class, id);
+		Plugin p = (Plugin) getSessionFactory().getCurrentSession().get(Plugin.class, id);
 		return p;
 	}
 
@@ -19,24 +27,24 @@ public class PluginDaoSupport extends HibernateDaoSupport implements PluginDao {
 	@Transactional(readOnly = true)
 	public List<Plugin> getAllPlugin() {
 		// TODO Auto-generated method stub
-		return getHibernateTemplate().find("from Plugin");
+		return getSessionFactory().getCurrentSession().createQuery("from Plugin").list();
 	}
 
 	@Transactional
 	public void insert(Plugin p) {
-		getHibernateTemplate().saveOrUpdate(p);
+		getSessionFactory().getCurrentSession().saveOrUpdate(p);
 
 	}
 
 	@Transactional
 	public void update(Plugin p) {
-		getHibernateTemplate().saveOrUpdate(p);
+		getSessionFactory().getCurrentSession().saveOrUpdate(p);
 
 	}
 
 	@Transactional
 	public void delete(Plugin p) {
-		getHibernateTemplate().delete(p);
+		getSessionFactory().getCurrentSession().delete(p);
 
 	}
 

@@ -1,31 +1,72 @@
 package org.fluidlearn.core.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.*;
+import javax.persistence.Id;
 
 @Entity
 public class Node implements Serializable {
 
 	private static final long serialVersionUID = -1308795024262635690L;
 
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "NODE_ID", unique = true, nullable = false)
 	private Long id;
 	
-	@Column
+	@Column(name = "NODE_TITLE", unique = true, nullable = false)
 	private String title;
+	
+	@Column(name = "NODE_FATHER", nullable = true)
+	private Node father;
+	//private List<Node> sons;
 
-	@ElementCollection
-	private List<Node> father;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((father == null) ? 0 : father.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Node other = (Node) obj;
+		if (father == null) {
+			if (other.father != null)
+				return false;
+		} else if (!father.equals(other.father))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
 
 	public Node() {
 		super();
 	}
 
-	public Node(Long id, String title, List<Node> father) {
+	public Node(Long id, String title, Node father) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -40,6 +81,7 @@ public class Node implements Serializable {
 		this.id = id;
 	}
 
+
 	public String getTitle() {
 		return title;
 	}
@@ -48,24 +90,20 @@ public class Node implements Serializable {
 		this.title = title;
 	}
 
-	public List<Node> getFather() {
+	public Node getFather() {
 		return father;
 	}
 
-	public void setFather(List<Node> fathers) {
+	public void setFather(Node fathers) {
 		this.father = fathers;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public void add(Node son) {
+	/*public void add(Node son) {
 		getNodesInternal().add(son);
 
-	}
+	}*/
 
-	public Node getNode(String title) {
+	/*public Node getNode(String title) {
 		return getNode(title, false);
 	}
 
@@ -81,14 +119,14 @@ public class Node implements Serializable {
 
 		}
 		return null;
-	}
+	} 
 
-	private List<Node> getNodesInternal() {
+	private Node getNodesInternal() {
 		if (this.father == null) {
-			return this.father = new ArrayList<Node>();
+			return this.father = new Node();
 		}
 		return this.father;
-	}
+	} */
 
 	@Override
 	public String toString() {
