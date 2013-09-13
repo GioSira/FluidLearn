@@ -19,6 +19,7 @@ public class UserDaoTest {
 	
     @Before
 	public void setUp() {
+    	user.setId(0L);
 	    user.setUsername("Giovanni");
 	    user.setPwd("pincopallo");
 	    userDao.insert(user);
@@ -26,30 +27,31 @@ public class UserDaoTest {
 	
     @Test
 	public void testUsername() {
-		User usr = userDao.searchByPK("Giovanni");
+		User usr = userDao.searchByPK(0L);
 		assertEquals(usr.getUsername(), user.getUsername());
 	}
 	
     @Test
 	public void testPwd() {
-		User usr = userDao.searchByPK("Giovanni");
+		User usr = userDao.searchByPK(0L);
 		assertEquals(usr.getPwd(), user.getPwd());
 	}
 	
     @Test
 	public void testAdd() {
 		User u = new User();
+		u.setId(1L);
 		u.setUsername("Geanina");
 		u.setPwd("caiomaio");
 		userDao.insert(u);
-		assert(userDao.searchByPK("Geanina") != null);
+		assert(userDao.searchByPK(1L) != null);
 	}
 	
     @Test
 	public void testDelete() {
-		User u = userDao.searchByPK("Giovanni");
+		User u = userDao.searchByPK(0L);
 		userDao.delete(u);
-		assertNull(userDao.searchByPK("Giovanni"));
+		assertNull(userDao.searchByPK(0L));
 	}
 
 }

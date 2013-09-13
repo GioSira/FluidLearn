@@ -11,18 +11,30 @@ public class User implements Serializable {
 	
 	@Id
 	@Column
+	private long id;
+	
+	@Column
 	private String username;
 	
 	@Column
 	private String pwd;
 
-	public User() {
-		this(null, null);
-	}
 
-	public User(String username, String pwd) {
+	public User() {
+	}
+	
+	public User(long id, String username, String pwd) {
+		this.id = id;
 		this.username = username;
 		this.pwd = pwd;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getUsername() {

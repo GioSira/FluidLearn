@@ -18,8 +18,8 @@ public class UserDaoSupport implements UserDao {
 	}
 	
 	@Transactional(readOnly = true)
-	public User searchByPK(String name) {
-		User u = (User) getSessionFactory().getCurrentSession().get(User.class, name);
+	public User searchByPK(long id) {
+		User u = (User) getSessionFactory().getCurrentSession().get(User.class, id);
 		return u;
 	}
 
