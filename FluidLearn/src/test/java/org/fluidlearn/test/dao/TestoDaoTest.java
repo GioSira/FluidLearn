@@ -21,18 +21,12 @@ public class TestoDaoTest {
 	public void setUp() {
 		testo.setId(00123L);
 		testo.setTitolo("Informatica");
-		testo.setDescrizione("Lorem Ipsum Sit Dolor Amet...");
 	    testoDao.insert(testo);
 	}
 	
 	@Test
 	public void testTitolo() {
 		assertEquals(testo.getTitolo(), testoDao.searchByPK(00123L).getTitolo());
-	}
-	
-	@Test
-	public void testDescrizione() {
-		assertEquals(testo.getDescrizione(), testoDao.searchByPK(00123L).getDescrizione());
 	}
 	
 	@Test

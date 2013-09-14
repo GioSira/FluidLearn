@@ -23,7 +23,6 @@ public class PostController extends MultiActionController {
 		Testo testo = new Testo();
 		testo.setId(00001L);
 		testo.setTitolo((String) request.getAttribute("titolo_post"));
-		testo.setDescrizione((String)request.getAttribute("descrizione"));
 		// salvo il testo
 		
 		// creo eventuale plugin
