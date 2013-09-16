@@ -18,6 +18,9 @@ public class Risposta extends Reazione {
 	
 	@Column
 	private Valutazione valutazione;
+	
+	@Column
+	private Sollecitazione sollecitazione;
 
 	public Risposta() {
 		super();
@@ -30,6 +33,10 @@ public class Risposta extends Reazione {
 		super(data, visibilita, isDraft, risorsa, nodo, unitaDA, corpo);
 		this.titolo = titolo;
 		this.valutazione = valutazione;
+	}
+
+	public Risposta(Corpo corpo) {
+		super(corpo);
 	}
 
 	public String getTitolo() {
@@ -46,6 +53,18 @@ public class Risposta extends Reazione {
 
 	public void setValutazione(Valutazione valutazione) {
 		this.valutazione = valutazione;
+	}
+
+	public Sollecitazione getSollecitazione() {
+		return sollecitazione;
+	}
+
+	public void setSollecitazione(Sollecitazione sollecitazione) {
+		this.sollecitazione = sollecitazione;
+	}
+	
+	public void setIsDraft(boolean isDraft) {
+		super.setIsDraft(isDraft);
 	}
 	
 }

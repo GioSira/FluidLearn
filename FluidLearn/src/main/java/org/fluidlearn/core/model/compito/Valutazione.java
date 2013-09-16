@@ -5,12 +5,15 @@ import javax.persistence.Entity;
 
 @Entity
 public class Valutazione {
-
+	
 	@Column
 	private String risultato;
 	
 	@Column
 	private String commento;
+	
+	@Column
+	private String maxRisultato;
 	
 	public Valutazione(String risultato, String commento) {
 		super();
@@ -34,6 +37,12 @@ public class Valutazione {
 		this.commento = commento;
 	}
 	
-	
+	public String getMaxRisultato() {
+		return maxRisultato;
+	}
+
+	public void setMaxRisultato(String maxRisultato) {
+		this.maxRisultato = maxRisultato;
+	}
 	
 }

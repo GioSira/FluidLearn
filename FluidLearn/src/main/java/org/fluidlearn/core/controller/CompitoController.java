@@ -54,6 +54,7 @@ public class CompitoController extends MultiActionController {
 		// creo il corpo, qui è solo testo
 		Corpo corpo = compito.getCorpo();
 		corpo.set(testo);
+		compito.setCorpo(corpo);
 		
 		// imposto la data
 		Date data = new Date();
@@ -110,6 +111,9 @@ public class CompitoController extends MultiActionController {
 		
 		//Salvataggio su db (richiama gli altri dao per salvare)
 		sollecitazioneDao.insert(bozzaCompito);
+		
+		// elimino il compito dalla session
+		request.getSession().removeAttribute("bozza");
 		
 		return new ModelAndView("CompitoPage", "compito", bozzaCompito);
 		

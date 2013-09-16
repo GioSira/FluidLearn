@@ -10,6 +10,11 @@ public abstract class Reazione extends Contributo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Reazione(Corpo corpo) {
+		super(corpo);
+		// TODO Auto-generated constructor stub
+	}
 
 	public Reazione(Date data, int visibilita, Boolean isDraft,
 			Risorsa risorsa, Nodo nodo, UnitaDA unitaDA, Corpo corpo) {
@@ -17,6 +22,8 @@ public abstract class Reazione extends Contributo {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public void setIsDraft(boolean isDraft) {
+		super.setIsDraft(isDraft);
+	}
 	
 }

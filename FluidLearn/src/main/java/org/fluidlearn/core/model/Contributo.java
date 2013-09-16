@@ -41,6 +41,10 @@ public abstract class Contributo {
 		this.unitaDAAppartenenza = uda;
 		this.corpo = corpo;
 	}
+	
+	public Contributo(Corpo corpo) {
+		this.corpo = corpo;
+	}
 
 	public Date getDatetime() {
 		return datetime;

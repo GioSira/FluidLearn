@@ -50,6 +50,22 @@ public class Date {
 	public void setOra(java.util.Date date) {
 		this.ora = date;
 	}
+
+	public boolean isLessThan(Date dataScadenza) {
+		
+		if(this.anno > dataScadenza.anno)
+			return false;
+		else {
+			if(this.mese > dataScadenza.mese)
+				return false;
+			else {
+				if(this.giorno > dataScadenza.giorno)
+					return false;
+				else
+					return true;
+			}
+		}
+	}
 	
 	
 
