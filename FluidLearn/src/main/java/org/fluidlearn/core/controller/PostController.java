@@ -3,7 +3,7 @@ package org.fluidlearn.core.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.fluidlearn.core.dao.NodeDao;
+import org.fluidlearn.core.dao.NodoDao;
 import org.fluidlearn.core.dao.PostDao;
 import org.fluidlearn.core.model.Post;
 import org.fluidlearn.core.model.corpo.Testo;

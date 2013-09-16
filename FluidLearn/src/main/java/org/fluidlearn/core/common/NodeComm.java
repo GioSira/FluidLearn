@@ -1,7 +1,7 @@
 package org.fluidlearn.core.common;
 
 
-import org.fluidlearn.core.dao.NodeDao;
+import org.fluidlearn.core.dao.NodoDao;
 import org.fluidlearn.core.model.Node;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,7 +16,7 @@ public class NodeComm {
     	ApplicationContext appContext = 
         		new ClassPathXmlApplicationContext("spring/config/beans.xml");
     	
-        NodeDao nodeDao = (NodeDao)appContext.getBean("nodeDao");
+        NodoDao nodeDao = (NodoDao)appContext.getBean("nodeDao");
         
         /*insert*/
         Node node = new Node();

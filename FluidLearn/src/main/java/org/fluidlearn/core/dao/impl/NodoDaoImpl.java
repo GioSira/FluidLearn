@@ -2,14 +2,15 @@ package org.fluidlearn.core.dao.impl;
 
 import java.util.List;
 
-import org.fluidlearn.core.dao.NodeDao;
+import org.fluidlearn.core.dao.NodoDao;
 import org.fluidlearn.core.model.Node;
+import org.fluidlearn.core.model.unitadidattica.Nodo;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 
-public class NodeDaoSupport implements NodeDao {
+public class NodoDaoImpl implements NodoDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -19,31 +20,31 @@ public class NodeDaoSupport implements NodeDao {
 	}
 	
 	@Transactional(readOnly = true)
-	public Node searchByPK(Long id) {
-		Node n = (Node) getSessionFactory().getCurrentSession().get(Node.class, id);
+	public Nodo searchByPK(Long id) {
+		Nodo n = (Nodo) getSessionFactory().getCurrentSession().get(Nodo.class, id);
 		return n;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public List<Node> getAllNode() {
-		return getSessionFactory().getCurrentSession().createQuery("from Node").list();
+	public List<Nodo> getAllNode() {
+		return getSessionFactory().getCurrentSession().createQuery("from Nodo").list();
 	}
 
 	@Transactional
-	public void insert(Node n) {
+	public void insert(Nodo n) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(n);
 		
 	}
 
 	@Transactional
-	public void update(Node n) {
+	public void update(Nodo n) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(n);
 		
 	}
 
 	@Transactional
-	public void delete(Node n) {
+	public void delete(Nodo n) {
 		getSessionFactory().getCurrentSession().delete(n);
 		
 	}

@@ -1,43 +1,54 @@
 package org.fluidlearn.core.model;
 
+
 public class Date {
 	
-	private String giorno;
-	private String mese;
-	private String anno;
+	private int giorno;
+	private int mese;
+	private int anno;
+	private java.util.Date ora;
 	
-	public Date(String giorno, String mese, String anno) {
+	public Date(int giorno, int mese, int anno, java.util.Date ora) {
 		this.giorno = giorno;
 		this.mese = mese;
 		this.anno = anno;
+		this.ora = ora;
 	}
 	
 	public Date() {
-		this(null, null, null);
+		this(0, 0, 0, null);
 	}
 
-	public String getGiorno() {
+	public int getGiorno() {
 		return giorno;
 	}
 
-	public void setGiorno(String giorno) {
-		this.giorno = giorno;
+	public void setGiorno(int i) {
+		this.giorno = i;
 	}
 
-	public String getMese() {
+	public int getMese() {
 		return mese;
 	}
 
-	public void setMese(String mese) {
+	public void setMese(int mese) {
 		this.mese = mese;
 	}
 
-	public String getAnno() {
+	public int getAnno() {
 		return anno;
 	}
 
-	public void setAnno(String anno) {
+	public void setAnno(int anno) {
 		this.anno = anno;
+	}
+
+	public java.util.Date getOra() {
+		return ora;
+	}
+
+	public void setOra(java.util.Date date) {
+		this.ora = date;
 	}
 	
 	

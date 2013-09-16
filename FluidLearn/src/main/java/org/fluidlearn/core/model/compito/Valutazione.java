@@ -1,8 +1,15 @@
 package org.fluidlearn.core.model.compito;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Valutazione {
 
+	@Column
 	private String risultato;
+	
+	@Column
 	private String commento;
 	
 	public Valutazione(String risultato, String commento) {

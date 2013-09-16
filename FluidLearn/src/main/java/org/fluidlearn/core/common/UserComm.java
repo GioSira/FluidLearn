@@ -1,6 +1,6 @@
 package org.fluidlearn.core.common;
 
-import org.fluidlearn.core.dao.UserDao;
+import org.fluidlearn.core.dao.UtenteDao;
 import org.fluidlearn.core.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,7 +15,7 @@ public class UserComm {
     	ApplicationContext appContext = 
         		new ClassPathXmlApplicationContext("spring/config/beans.xml");
     	
-        UserDao userDao = (UserDao)appContext.getBean("userDao");
+        UtenteDao userDao = (UtenteDao)appContext.getBean("userDao");
 		
         
         User user = new User(00001L, "Giovanni", "pincopallo");

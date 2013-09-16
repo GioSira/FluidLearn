@@ -1,24 +1,26 @@
 package org.fluidlearn.core.model.attori;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import org.fluidlearn.core.model.Date;
 
+@Entity
 public class Studente extends Ruolo {
 
+	@Column
 	Date anno_iscrizione;
-	private Object partecipante;
+	
+	@Column
+	private Partecipante partecipante;
 
-	public Studente(Partecipante partecipante) {
-		this.partecipante = partecipante;
+	public Studente(Partecipante part) {
+		super();
 		this.anno_iscrizione = null;
-		this.ruolo = "studente";
+		this.partecipante = part;
 	}
 
-	public Studente(String user, String password, String email, String nome,
-			String cognome, Date anno_iscrizione) {
-		this.partecipante = partecipante;
-		this.anno_iscrizione = anno_iscrizione;
-		this.ruolo = "studente";
-	}
+	
 	
 	
 	

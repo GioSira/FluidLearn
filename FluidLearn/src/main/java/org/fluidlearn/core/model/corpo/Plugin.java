@@ -1,6 +1,7 @@
 package org.fluidlearn.core.model.corpo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 
@@ -22,8 +23,12 @@ public class Plugin implements Serializable  {
 	
 	@Column
 	private String path;
+	
+	@Column
+	private ArrayList<Artefatto> artefatti;
 
 	public Plugin() {
+		artefatti = new ArrayList<Artefatto>();
 	}
 
 	public Plugin(Long id, String name, String type, String path) {
@@ -32,6 +37,7 @@ public class Plugin implements Serializable  {
 		this.name = name;
 		this.type = type;
 		this.path = path;
+		this.artefatti = new ArrayList<Artefatto>();
 	}
 
 	public Long getId() {
@@ -70,9 +76,19 @@ public class Plugin implements Serializable  {
 		return serialVersionUID;
 	}
 	
-	
+	public Artefatto[] getArtefatti() {
+		return (Artefatto[]) artefatti.toArray();
+	}
+
+	public void setArtefatti(Artefatto[] artefatti) {
+		for(Artefatto art: artefatti)
+			this.artefatti.add(art);
+	}
+
 	public Artefatto creaArtefatto() {
-		return new Artefatto();
+		Artefatto artefatto = new Artefatto(this);
+		artefatti.add(artefatto);
+		return artefatto;		
 	}
 
 	@Override

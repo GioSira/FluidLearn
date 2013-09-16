@@ -1,17 +1,16 @@
 package org.fluidlearn.core.controller;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.fluidlearn.core.dao.*;
 import org.fluidlearn.core.model.Corso;
 import org.fluidlearn.core.model.Date;
-import org.fluidlearn.core.model.Risorsa;
 import org.fluidlearn.core.model.attori.Partecipante;
 import org.fluidlearn.core.model.compito.Sollecitazione;
 import org.fluidlearn.core.model.corpo.Corpo;
-import org.fluidlearn.core.model.corpo.Plugin;
-import org.fluidlearn.core.model.unitadidattica.Nodo;
 import org.fluidlearn.core.model.unitadidattica.UnitaDA;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,13 +28,10 @@ public class CompitoController extends MultiActionController {
     private CorsoDao corsoDao = (CorsoDao)appContext.getBean("corsoDao");
 	private SollecitazioneDao sollecitazioneDao = (SollecitazioneDao)appContext.getBean("sollecitazioneDao");
     
-	public ModelAndView creaPost(Partecipante part, Boolean isTesto, Long id_corso,
-			Risorsa ris, Nodo nodo, String testo, String titolo, Date data_scadenza, 
-			Boolean visibilita, Date data_time) throws Exception {
+	public ModelAndView creaCompito(Partecipante part, Boolean isTesto, Long id_corso) throws Exception {
 		
 		// creo il corpo
 		Corpo corpo = Corpo.creaCorpo(isTesto);
-		corpo.set(testo);
 		
 		// prendo l'oggetto corso dal DB
 		Corso corso = corsoDao.searchByPK(id_corso);
@@ -43,45 +39,74 @@ public class CompitoController extends MultiActionController {
 		// prendo l'ultima uda attiva
 		UnitaDA uda = corso.getLastUDAAttiva();
 		
-		Sollecitazione compito = new Sollecitazione(data_time, visibilita, false, ris, nodo, uda, 
-				corpo, titolo, data_scadenza, part);
+		Sollecitazione compito = new Sollecitazione(part, corpo, uda);
 		
 		request.getSession().setAttribute("bozza", compito);
 		
-		return new ModelAndView("CompitoPage", "compitoBozza", compito);
+		return new ModelAndView("CompitoPage", "compito", compito);
 		
 	}
 	
-	public ModelAndView creaPostPlugin(Partecipante part, Boolean isTesto, Long id_corso,
-			Risorsa ris, Nodo nodo, Plugin plugin, String titolo, Date data_scadenza, 
-			Boolean visibilita, Date data_time) throws Exception {
+	public ModelAndView setInfo(String titolo, String testo, Date data_scadenza, int visibilita) throws Exception {
 		
-		// creo il corpo
-		Corpo corpo = Corpo.creaCorpo(isTesto);
-		corpo.set(plugin);
+		Sollecitazione compito = (Sollecitazione)request.getSession().getAttribute("bozza");
 		
-		// prendo l'oggetto corso dal DB
-		Corso corso = corsoDao.searchByPK(id_corso);
+		// creo il corpo, qui è solo testo
+		Corpo corpo = compito.getCorpo();
+		corpo.set(testo);
 		
-		// prendo l'ultima uda attiva
-		UnitaDA uda = corso.getLastUDAAttiva();
+		// imposto la data
+		Date data = new Date();
+		Calendar c = Calendar.getInstance();
 		
-		Sollecitazione compitoPlugin = new Sollecitazione(data_time, visibilita, false, ris, nodo, uda, 
-				corpo, titolo, data_scadenza, part);
+		data.setGiorno(c.get(Calendar.DAY_OF_MONTH));
+		data.setMese(c.get(Calendar.MONTH));
+		data.setAnno(c.get(Calendar.YEAR));
+		data.setOra(c.getTime());
+		compito.setDatetime(data);
 		
-		request.getSession().setAttribute("bozza", compitoPlugin);
+		// imposto la data di scadenza
+		compito.setDataScadenza(data_scadenza);
 		
-		return new ModelAndView("CompitoPage", "compitoPluginBozza", compitoPlugin);
+		// inserisco il titolo
+		compito.setTitolo(titolo);
+		
+		//imposto la visibilità
+		compito.setVisibilita(visibilita);
+		
+		// salvo il compito
+		request.getSession().setAttribute("bozza", compito);
+		
+		return new ModelAndView("CompitoPage", "compito", compito);
 		
 	}
 	
-	public ModelAndView salva(Boolean isDraft) {
+	
+	public ModelAndView setUDA(UnitaDA uda) {
+		
+		Sollecitazione compito = (Sollecitazione)request.getSession().getAttribute("bozza");
+		
+		// imposto l'unità didattica di riferimento
+		compito.setUnitaDAAppartenenza(uda);
+		
+		return new ModelAndView("CompitoPage", "compito", compito);
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Allegare risorse al compito viene fatto tramite l'apposito UC di 
+	 * Risorse
+	 *
+	 */
+	
+	
+	public ModelAndView inviaCompito(Boolean isDraft) {
 		
 		Sollecitazione bozzaCompito = (Sollecitazione) request.getSession().getAttribute("bozza");
 		// setto il valore di draft
 		bozzaCompito.setIsDraft(isDraft);
-		
-		// creazione di SollecitazioneDao...
 		
 		//Salvataggio su db (richiama gli altri dao per salvare)
 		sollecitazioneDao.insert(bozzaCompito);
@@ -92,9 +117,7 @@ public class CompitoController extends MultiActionController {
 	
 	
 	public ModelAndView elimina(Long idCompito) {
-		
-		// creazione di SollecitazioneDao...
-		
+				
 		//Salvataggio su db (richiama gli altri dao per salvare)
 		sollecitazioneDao.deleteByID(idCompito);
 		

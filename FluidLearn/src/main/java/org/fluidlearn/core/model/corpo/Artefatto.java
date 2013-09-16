@@ -1,8 +1,18 @@
 package org.fluidlearn.core.model.corpo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Artefatto extends Corpo {
 
-	Plugin plugin;
+	@Id
+	@Column
+	Long id;
+	
+	@Column
+	private Plugin plugin;
 
 	public Artefatto(Plugin plugin) {
 		super();
@@ -13,16 +23,16 @@ public class Artefatto extends Corpo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Plugin getPlugin() {
-		return plugin;
-	}
-
-	public void setPlugin(Plugin plugin) {
+	public void setArtefatto(Plugin plugin) {
 		this.plugin = plugin;
 	}
 	
 	public void set(Object obj) {
-		setPlugin((Plugin)obj);
+		setArtefatto((Plugin)obj);
+	}
+	
+	public Object get() {
+		return plugin;
 	}
 	
 }

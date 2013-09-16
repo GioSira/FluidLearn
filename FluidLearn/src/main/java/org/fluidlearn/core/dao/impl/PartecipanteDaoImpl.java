@@ -2,13 +2,13 @@ package org.fluidlearn.core.dao.impl;
 
 import java.util.List;
 
-import org.fluidlearn.core.dao.PluginDao;
-import org.fluidlearn.core.model.corpo.Plugin;
+import org.fluidlearn.core.dao.PartecipanteDao;
+import org.fluidlearn.core.model.attori.Partecipante;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-public class PluginDaoSupport implements PluginDao {
+public class PartecipanteDaoImpl implements PartecipanteDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -18,34 +18,33 @@ public class PluginDaoSupport implements PluginDao {
 	}
 	
 	@Transactional(readOnly = true)
-	public Plugin searchByPK(Long id) {
-		Plugin p = (Plugin) getSessionFactory().getCurrentSession().get(Plugin.class, id);
+	public Partecipante searchByPK(Long id) {
+		Partecipante p = (Partecipante) getSessionFactory().getCurrentSession().get(Partecipante.class, id);
 		return p;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public List<Plugin> getAllPlugin() {
-		// TODO Auto-generated method stub
-		return getSessionFactory().getCurrentSession().createQuery("from Plugin").list();
+	public List<Partecipante> getAllPartecipanti() {
+		return getSessionFactory().getCurrentSession().createQuery("from Partecipante").list();
 	}
 
 	@Transactional
-	public void insert(Plugin p) {
+	public void insert(Partecipante p) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(p);
-
+		
 	}
 
 	@Transactional
-	public void update(Plugin p) {
+	public void update(Partecipante p) {
 		getSessionFactory().getCurrentSession().saveOrUpdate(p);
-
+		
 	}
 
 	@Transactional
-	public void delete(Plugin p) {
+	public void delete(Partecipante p) {
 		getSessionFactory().getCurrentSession().delete(p);
-
+		
 	}
 
 }

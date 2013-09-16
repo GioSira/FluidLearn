@@ -1,5 +1,8 @@
 package org.fluidlearn.core.model.compito;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import org.fluidlearn.core.model.Date;
 import org.fluidlearn.core.model.Reazione;
 import org.fluidlearn.core.model.Risorsa;
@@ -7,9 +10,13 @@ import org.fluidlearn.core.model.corpo.Corpo;
 import org.fluidlearn.core.model.unitadidattica.Nodo;
 import org.fluidlearn.core.model.unitadidattica.UnitaDA;
 
+@Entity
 public class Risposta extends Reazione {
 
+	@Column
 	private String titolo;
+	
+	@Column
 	private Valutazione valutazione;
 
 	public Risposta() {
@@ -18,7 +25,7 @@ public class Risposta extends Reazione {
 		this.valutazione = null;
 	}
 
-	public Risposta(String titolo, Valutazione valutazione, Date data, Boolean visibilita, Boolean isDraft,
+	public Risposta(String titolo, Valutazione valutazione, Date data, int visibilita, Boolean isDraft,
 			Risorsa risorsa, Nodo nodo, UnitaDA unitaDA, Corpo corpo) {
 		super(data, visibilita, isDraft, risorsa, nodo, unitaDA, corpo);
 		this.titolo = titolo;

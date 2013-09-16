@@ -44,6 +44,10 @@ public class Testo extends Corpo implements Serializable  {
 	public void set(Object obj) {
 		this.setTesto((String)obj);
 	}
+	
+	public Object get() {
+		return testo;
+	}
 
 	@Override
 	public String toString() {

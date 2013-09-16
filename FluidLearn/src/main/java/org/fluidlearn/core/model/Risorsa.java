@@ -1,8 +1,15 @@
 package org.fluidlearn.core.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Risorsa {
 
+	@Column
 	private String file;
+	
+	@Column
 	private String external;
 	
 	public Risorsa() {

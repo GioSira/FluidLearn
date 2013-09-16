@@ -1,5 +1,7 @@
 package org.fluidlearn.core.model.corpo;
 
+import org.fluidlearn.core.controller.PluginController;
+
 public abstract class Corpo {
 
 	public static Corpo creaCorpo(Boolean isTesto) {
@@ -8,15 +10,13 @@ public abstract class Corpo {
 			return corpo;
 		}
 		else {
-			// richiamo plugin controller che mi
-			// mi crea un plugin che mi crea un artefatto
-			// poi ritorno l'artefatto
-			Plugin plugin = new Plugin();
-			Corpo corpo = plugin.creaArtefatto();
-			return corpo;
+			PluginController plugContr = new PluginController();
+			return plugContr.creArtefatto();
 		}
 	}
 	
 	public abstract void set(Object obj);
+	
+	public abstract Object get();
 	
 }

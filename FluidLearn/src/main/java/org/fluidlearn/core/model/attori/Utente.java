@@ -1,9 +1,18 @@
 package org.fluidlearn.core.model.attori;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public abstract class Utente {
 
+	@Column
 	private String user;
+	
+	@Column
 	private String password;
+	
+	@Column
 	private String email;
 	
 	public Utente(String user, String password, String email) {

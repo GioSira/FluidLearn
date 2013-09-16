@@ -1,13 +1,26 @@
 package org.fluidlearn.core.model.unitadidattica;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import org.fluidlearn.core.model.Risorsa;
 
+@Entity
 public class Relazione {
 
+	@Column
 	public String nome;
+	
+	@Column
 	public String descrizione;
+	
+	@Column
 	public Risorsa risorsa;
+	
+	@Column
 	private Nodo nodo1;
+	
+	@Column
 	private Nodo nodo2;
 	
 	
@@ -59,6 +72,10 @@ public class Relazione {
 		this.risorsa = risorsa;
 		this.nodo1 = nodo1;
 		this.nodo2 = nodo2;
+	}
+	
+	public Relazione(String nome, String descrizione, Nodo nodo1, Nodo nodo2) {
+		this(nome, descrizione, null, nodo1, nodo2);
 	}
 	
 	

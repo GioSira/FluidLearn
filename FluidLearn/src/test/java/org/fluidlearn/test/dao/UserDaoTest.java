@@ -2,7 +2,7 @@ package org.fluidlearn.test.dao;
 
 import static org.junit.Assert.*;
 
-import org.fluidlearn.core.dao.UserDao;
+import org.fluidlearn.core.dao.UtenteDao;
 import org.fluidlearn.core.model.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class UserDaoTest {
 
 	private ApplicationContext appContext = 
     		new ClassPathXmlApplicationContext("spring/config/beans.xml");
-    private UserDao userDao = (UserDao) appContext.getBean("userDao");
+    private UtenteDao userDao = (UtenteDao) appContext.getBean("userDao");
     
     private User user = new User();
 	

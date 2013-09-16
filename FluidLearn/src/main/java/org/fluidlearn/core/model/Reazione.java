@@ -11,9 +11,9 @@ public abstract class Reazione extends Contributo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reazione(Date data, Boolean visibilita, Boolean isDraft,
+	public Reazione(Date data, int visibilita, Boolean isDraft,
 			Risorsa risorsa, Nodo nodo, UnitaDA unitaDA, Corpo corpo) {
-		super(data, visibilita, isDraft, risorsa, nodo, unitaDA, corpo);
+		super(data, visibilita, isDraft, risorsa, unitaDA, corpo);
 		// TODO Auto-generated constructor stub
 	}
 

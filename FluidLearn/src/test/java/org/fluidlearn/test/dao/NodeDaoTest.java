@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 
-import org.fluidlearn.core.dao.NodeDao;
+import org.fluidlearn.core.dao.NodoDao;
 import org.fluidlearn.core.model.Node;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class NodeDaoTest {
 
 	private ApplicationContext appContext = 
     		new ClassPathXmlApplicationContext("spring/config/beans.xml");
-    private NodeDao nodeDao = (NodeDao) appContext.getBean("nodeDao");
+    private NodoDao nodeDao = (NodoDao) appContext.getBean("nodeDao");
 	
 	Node node = new Node();
 	

@@ -26,8 +26,8 @@ public class Corso {
 	@Column
 	private UnitaDA uda;
 	
-	@Column
-	private PercorsoDA percorsoDA;
+	//@Column
+	//private PercorsoDA percorsoDA;
 	
 	@Column
 	private Prototipo prototipo;
@@ -35,5 +35,47 @@ public class Corso {
 	public UnitaDA getLastUDAAttiva() {
 		return uda;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
+	public Partecipante[] getPartecipanti() {
+		return (Partecipante[]) partecipanti.toArray();
+	}
+
+	public void addPartecipanti(Partecipante part) {
+		this.partecipanti.add(part);
+	}
+
+	public Mappa getMappa() {
+		return mappa;
+	}
+
+	public void setMappa(Mappa mappa) {
+		this.mappa = mappa;
+	}
+
+	public UnitaDA getUda() {
+		return uda;
+	}
+
+	public void setUda(UnitaDA uda) {
+		this.uda = uda;
+	}
+	
+	
 	
 }

@@ -1,29 +1,26 @@
 package org.fluidlearn.core.model.unitadidattica;
 
-import java.util.ArrayList;
-
 import org.fluidlearn.core.model.Risorsa;
 
 public class NodoComposto extends Nodo {
 	
-	public NodoComposto(String descrizione, String nome, Risorsa risorsa,
+	public NodoComposto(String descrizione, String nome, Risorsa[] risorse,
 			Nodo[] children) {
-		super(descrizione, nome, risorsa, children);
+		super(descrizione, nome, risorse, children);
 	}
 
 	@Override
-	public Risorsa getRisorsa() {
-		return this.getRisorsa();
+	public Risorsa[] getRisorse() {
+		return risorse;
 	}
 
-	
+	// da rincontrollare per vedere se va bene come idea
 	public Risorsa[] getRisorseTutte() {
-		// aggiungo la risorsa del nodo in cui sono
-		this.allNode.add(this.getRisorsa());
-		// per ogni nodo figlio, aggiungo la risorsa
-		for(Nodo nodo: this.children) {
-			this.allNode.add(nodo.getRisorseTutte());
-		}
+		for(Risorsa risorsa: this.risorse)
+			risorseArray.add(risorsa);
+		for(Nodo nodo : this.children)
+			nodo.getRisorseTutte();
+		return (Risorsa[]) risorseArray.toArray();
 	}
 	
 }

@@ -1,9 +1,18 @@
 package org.fluidlearn.core.model.unitadidattica;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class UnitaDA {
 
+	@Column
 	private String titolo;
+	
+	@Column
 	private String descrizione;
+	
+	@Column
 	private String stato;
 	
 	public UnitaDA(String titolo, String descrizione, String stato) {
