@@ -1,4 +1,4 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.unitadidattica;
 
 import java.util.ArrayList;
 

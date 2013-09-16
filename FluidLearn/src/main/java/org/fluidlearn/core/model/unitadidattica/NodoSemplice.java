@@ -1,4 +1,6 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.unitadidattica;
+
+import org.fluidlearn.core.model.Risorsa;
 
 public class NodoSemplice extends Nodo {
 	
@@ -13,9 +15,7 @@ public class NodoSemplice extends Nodo {
 
 	@Override
 	public Risorsa[] getRisorseTutte() {
-		Risorsa[] risorsa = new Risorsa[1];
-		risorsa[0] = this.getRisorsa();
-		return risorsa;
+		return (Risorsa[]) this.allNode.toArray();
 	}
 
 }

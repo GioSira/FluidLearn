@@ -3,7 +3,7 @@ package org.fluidlearn.core.dao.impl;
 import java.util.List;
 
 import org.fluidlearn.core.dao.TestoDao;
-import org.fluidlearn.core.model.Testo;
+import org.fluidlearn.core.model.corpo.Testo;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;

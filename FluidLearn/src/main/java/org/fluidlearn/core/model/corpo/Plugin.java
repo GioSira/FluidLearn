@@ -1,16 +1,17 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.corpo;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
-public class Plugin implements Serializable {
+public class Plugin implements Serializable  {
+	
+	// devo far diventare così la classe Artefatto!!
 	
 	private static final long serialVersionUID = -1308795024262635690L;
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column
@@ -67,6 +68,11 @@ public class Plugin implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	
+	public Artefatto creaArtefatto() {
+		return new Artefatto();
 	}
 
 	@Override

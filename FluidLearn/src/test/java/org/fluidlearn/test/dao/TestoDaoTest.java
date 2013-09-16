@@ -3,7 +3,7 @@ package org.fluidlearn.test.dao;
 import static org.junit.Assert.*;
 
 import org.fluidlearn.core.dao.TestoDao;
-import org.fluidlearn.core.model.Testo;
+import org.fluidlearn.core.model.corpo.Testo;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -20,13 +20,13 @@ public class TestoDaoTest {
 	@Before
 	public void setUp() {
 		testo.setId(00123L);
-		testo.setTitolo("Informatica");
+		testo.setTesto("Informatica");
 	    testoDao.insert(testo);
 	}
 	
 	@Test
 	public void testTitolo() {
-		assertEquals(testo.getTitolo(), testoDao.searchByPK(00123L).getTitolo());
+		assertEquals(testo.getTesto(), testoDao.searchByPK(00123L).getTesto());
 	}
 	
 	@Test

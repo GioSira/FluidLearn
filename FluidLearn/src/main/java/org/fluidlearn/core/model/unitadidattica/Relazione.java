@@ -1,4 +1,6 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.unitadidattica;
+
+import org.fluidlearn.core.model.Risorsa;
 
 public class Relazione {
 

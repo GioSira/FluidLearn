@@ -1,4 +1,4 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.compito;
 
 public class Valutazione {
 

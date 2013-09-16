@@ -1,12 +1,16 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.corpo;
 
-public class Artefatto implements Corpo {
+public class Artefatto extends Corpo {
 
 	Plugin plugin;
 
 	public Artefatto(Plugin plugin) {
 		super();
 		this.plugin = plugin;
+	}
+
+	public Artefatto() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Plugin getPlugin() {
@@ -17,7 +21,8 @@ public class Artefatto implements Corpo {
 		this.plugin = plugin;
 	}
 	
-	
-	
+	public void set(Object obj) {
+		setPlugin((Plugin)obj);
+	}
 	
 }

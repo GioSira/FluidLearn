@@ -1,5 +1,9 @@
 package org.fluidlearn.core.model;
 
+import org.fluidlearn.core.model.corpo.Corpo;
+import org.fluidlearn.core.model.unitadidattica.Nodo;
+import org.fluidlearn.core.model.unitadidattica.UnitaDA;
+
 public abstract class Reazione extends Contributo {
 
 	public Reazione() {

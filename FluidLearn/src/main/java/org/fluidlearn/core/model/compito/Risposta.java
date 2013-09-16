@@ -1,4 +1,11 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.compito;
+
+import org.fluidlearn.core.model.Date;
+import org.fluidlearn.core.model.Reazione;
+import org.fluidlearn.core.model.Risorsa;
+import org.fluidlearn.core.model.corpo.Corpo;
+import org.fluidlearn.core.model.unitadidattica.Nodo;
+import org.fluidlearn.core.model.unitadidattica.UnitaDA;
 
 public class Risposta extends Reazione {
 

@@ -1,4 +1,4 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.unitadidattica;
 
 public class UnitaDA {
 

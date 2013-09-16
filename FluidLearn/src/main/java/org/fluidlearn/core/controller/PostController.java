@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.fluidlearn.core.dao.NodeDao;
 import org.fluidlearn.core.dao.PostDao;
 import org.fluidlearn.core.model.Post;
-import org.fluidlearn.core.model.Testo;
+import org.fluidlearn.core.model.corpo.Testo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.ModelAndView;

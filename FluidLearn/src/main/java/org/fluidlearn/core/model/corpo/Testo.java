@@ -1,11 +1,11 @@
-package org.fluidlearn.core.model;
+package org.fluidlearn.core.model.corpo;
 
 import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
-public class Testo implements Serializable, Corpo {
+public class Testo extends Corpo implements Serializable  {
 	
 	private static final long serialVersionUID = -1308795024262635690L;
 	
@@ -14,7 +14,7 @@ public class Testo implements Serializable, Corpo {
 	private Long id;
 	
 	@Column
-	private String titolo;
+	private String testo;
 	
 	
 	public Testo() {
@@ -22,7 +22,7 @@ public class Testo implements Serializable, Corpo {
 
 	public Testo(Long id, String titolo, String descrizione) {
 		this.id = id;
-		this.titolo = titolo;
+		this.testo = titolo;
 	}
 
 	public Long getId() {
@@ -33,19 +33,21 @@ public class Testo implements Serializable, Corpo {
 		this.id = id;
 	}
 
-	public String getTitolo() {
-		return titolo;
+	public String getTesto() {
+		return testo;
 	}
 
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
+	public void setTesto(String testo) {
+		this.testo = testo;
 	}
 
-
+	public void set(Object obj) {
+		this.setTesto((String)obj);
+	}
 
 	@Override
 	public String toString() {
-		return "Testo [id=" + id + ", titolo=" + titolo + ", descrizione="
+		return "Testo [id=" + id + ", titolo=" + testo + ", descrizione="
 				+ "]";
 	}
 	
