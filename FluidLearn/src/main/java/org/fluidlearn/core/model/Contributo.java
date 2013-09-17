@@ -2,12 +2,17 @@ package org.fluidlearn.core.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import org.fluidlearn.core.model.corpo.Corpo;
 import org.fluidlearn.core.model.unitadidattica.Nodo;
 import org.fluidlearn.core.model.unitadidattica.UnitaDA;
 
+@Entity
 public abstract class Contributo {
 
+	@Column
 	private Date datetime;
 	
 	/* se vis = 0, visibile al creatore,
@@ -15,11 +20,22 @@ public abstract class Contributo {
 	 * se vis = 2, visibile a tutti
 	 */
 	
+	@Column
 	private int visibilita;
+	
+	@Column
 	private Boolean isDraft;
+	
+	@Column
 	private Risorsa risorsa;
+	
+	@Column
 	private ArrayList<Nodo> nodo;
+	
+	@Column
 	private UnitaDA unitaDAAppartenenza;
+	
+	@Column
 	private Corpo corpo;
 	
 	public Contributo(Date data, int visibilita, Boolean isDraft, Risorsa risorsa,

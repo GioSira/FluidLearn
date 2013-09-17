@@ -28,7 +28,7 @@ public class CompitoController extends MultiActionController {
     private CorsoDao corsoDao = (CorsoDao)appContext.getBean("corsoDao");
 	private SollecitazioneDao sollecitazioneDao = (SollecitazioneDao)appContext.getBean("sollecitazioneDao");
     
-	public ModelAndView creaCompito(Partecipante part, Boolean isTesto, Long id_corso) throws Exception {
+	public Sollecitazione creaCompito(Partecipante part, Boolean isTesto, Long id_corso) throws Exception {
 		
 		// creo il corpo
 		Corpo corpo = Corpo.creaCorpo(isTesto);
@@ -41,13 +41,13 @@ public class CompitoController extends MultiActionController {
 		
 		Sollecitazione compito = new Sollecitazione(part, corpo, uda);
 		
-		request.getSession().setAttribute("bozza", compito);
+
 		
-		return new ModelAndView("CompitoPage", "compito", compito);
+		return compito;
 		
 	}
 	
-	public ModelAndView setInfo(String titolo, String testo, Date data_scadenza, int visibilita) throws Exception {
+	public Sollecitazione setInfo(String titolo, String testo, Date data_scadenza, int visibilita) throws Exception {
 		
 		Sollecitazione compito = (Sollecitazione)request.getSession().getAttribute("bozza");
 		
@@ -78,19 +78,19 @@ public class CompitoController extends MultiActionController {
 		// salvo il compito
 		request.getSession().setAttribute("bozza", compito);
 		
-		return new ModelAndView("CompitoPage", "compito", compito);
+		return compito;
 		
 	}
 	
 	
-	public ModelAndView setUDA(UnitaDA uda) {
+	public Sollecitazione setUDA(UnitaDA uda) {
 		
 		Sollecitazione compito = (Sollecitazione)request.getSession().getAttribute("bozza");
 		
 		// imposto l'unità didattica di riferimento
 		compito.setUnitaDAAppartenenza(uda);
 		
-		return new ModelAndView("CompitoPage", "compito", compito);
+		return compito;
 		
 	}
 	
@@ -103,7 +103,7 @@ public class CompitoController extends MultiActionController {
 	 */
 	
 	
-	public ModelAndView inviaCompito(Boolean isDraft) {
+	public Sollecitazione inviaCompito(Boolean isDraft) {
 		
 		Sollecitazione bozzaCompito = (Sollecitazione) request.getSession().getAttribute("bozza");
 		// setto il valore di draft
@@ -115,19 +115,15 @@ public class CompitoController extends MultiActionController {
 		// elimino il compito dalla session
 		request.getSession().removeAttribute("bozza");
 		
-		return new ModelAndView("CompitoPage", "compito", bozzaCompito);
+		return bozzaCompito;
 		
 	}
 	
 	
-	public ModelAndView elimina(Long idCompito) {
+	public void elimina(Long idCompito) {
 				
 		//Salvataggio su db (richiama gli altri dao per salvare)
 		sollecitazioneDao.deleteByID(idCompito);
-		
-		// creazione degli oggetti compito
-		
-		return new ModelAndView("CompitoPage", "compito", "ecc...");
 		
 	}
 	

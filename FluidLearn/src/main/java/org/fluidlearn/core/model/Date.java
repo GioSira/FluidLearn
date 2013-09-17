@@ -1,11 +1,21 @@
 package org.fluidlearn.core.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
 public class Date {
 	
+	@Column
 	private int giorno;
+	
+	@Column
 	private int mese;
+	
+	@Column
 	private int anno;
+	
+	@Column
 	private java.util.Date ora;
 	
 	public Date(int giorno, int mese, int anno, java.util.Date ora) {
