@@ -2,8 +2,8 @@ package org.fluidlearn.test.dao;
 
 import static org.junit.Assert.*;
 
-import org.fluidlearn.core.dao.TestoDao;
 import org.fluidlearn.core.model.corpo.Testo;
+import org.fluidlearn.dao.TestoDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

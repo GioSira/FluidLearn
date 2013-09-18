@@ -20,9 +20,9 @@ public class Testo extends Corpo implements Serializable  {
 	public Testo() {
 	}
 
-	public Testo(Long id, String titolo, String descrizione) {
+	public Testo(Long id, String testo) {
 		this.id = id;
-		this.testo = titolo;
+		this.testo = testo;
 	}
 
 	public Long getId() {

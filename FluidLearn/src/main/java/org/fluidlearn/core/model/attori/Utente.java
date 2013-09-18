@@ -2,10 +2,17 @@ package org.fluidlearn.core.model.attori;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public abstract class Utente {
 
+	private static Long long_number = 00000001L;
+	
+	@Column
+	@Id
+	private Long id;
+	
 	@Column
 	private String user;
 	
@@ -16,11 +23,20 @@ public abstract class Utente {
 	private String email;
 	
 	public Utente(String user, String password, String email) {
+		this.id = long_number++;
 		this.user= user;
 		this.password = password;
 		this.email = email;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Utente() {
 		this(null, null, null);
 	}

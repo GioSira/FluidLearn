@@ -37,30 +37,163 @@
 	</bean>
 	
 	<!-- creo i bean per le classi Dao -->
-	<bean id="personDao" class="org.fluidlearn.core.dao.impl.PersonDaoImpl"></bean>
-	<bean id="nodoDao" class="org.fluidlearn.core.dao.impl.NodoDaoImpl"></bean>
-	<bean id="pluginDao" class="org.fluidlearn.core.dao.impl.PluginDaoImpl"></bean>
-	<bean id="postDao" class="org.fluidlearn.core.dao.impl.PostDaoImpl"></bean>
-	<bean id="testoDao" class="org.fluidlearn.core.dao.impl.TestoDaoImpl"></bean>
-	<bean id="utenteDao" class="org.fluidlearn.core.dao.impl.UtenteDaoImpl"></bean>
-	<bean id="artefattoDao" class="org.fluidlearn.core.dao.impl.ArtefattoDaoImpl"></bean>
-	<bean id="contributoDao" class="org.fluidlearn.core.dao.impl.ContributoDaoImpl"></bean>
-	<bean id="corpoDao" class="org.fluidlearn.core.dao.impl.CorpoDaoImpl"></bean>
-	<bean id="corsoDao" class="org.fluidlearn.core.dao.impl.CorsoDaoImpl"></bean>
-	<bean id="mappaDao" class="org.fluidlearn.core.dao.impl.MappaDaoImpl"></bean>
-	<bean id="partecipanteDao" class="org.fluidlearn.core.dao.impl.PartecipanteDaoImpl"></bean>
-	<bean id="prototipoDao" class="org.fluidlearn.core.dao.impl.PrototipoDaoImpl"></bean>
-	<bean id="RelazioneDao" class="org.fluidlearn.core.dao.impl.RelazioneDaoImpl"></bean>
-	<bean id="risorsaDao" class="org.fluidlearn.core.dao.impl.RisorsaDaoImpl"></bean>
-	<bean id="rispostaDao" class="org.fluidlearn.core.dao.impl.RispostaDaoImpl"></bean>
-	<bean id="ruoloDao" class="org.fluidlearn.core.dao.impl.RuoloDaoImpl"></bean>
-	<bean id="sollecitazioneDao" class="org.fluidlearn.core.dao.impl.SollecitazioneDaoImpl"></bean>
-	<bean id="testoDao" class="org.fluidlearn.core.dao.impl.TestoDaoImpl"></bean>
-	<bean id="unitaDADao" class="org.fluidlearn.core.dao.impl.UnitaDADaoImpl"></bean>
+	<bean id="personDao" class="org.fluidlearn.dao.impl.PersonDaoImpl"></bean>
+	<bean id="nodoDao" class="org.fluidlearn.dao.impl.NodoDaoImpl"></bean>
+	<bean id="pluginDao" class="org.fluidlearn.dao.impl.PluginDaoImpl"></bean>
+	<bean id="postDao" class="org.fluidlearn.dao.impl.PostDaoImpl"></bean>
+	<bean id="utenteDao" class="org.fluidlearn.dao.impl.UtenteDaoImpl"></bean>
+	<bean id="artefattoDao" class="org.fluidlearn.dao.impl.ArtefattoDaoImpl"></bean>
+	<bean id="contributoDao" class="org.fluidlearn.dao.impl.ContributoDaoImpl"></bean>
+	<bean id="corpoDao" class="org.fluidlearn.dao.impl.CorpoDaoImpl"></bean>
+	<bean id="corsoDao" class="org.fluidlearn.dao.impl.CorsoDaoImpl"></bean>
+	<bean id="mappaDao" class="org.fluidlearn.dao.impl.MappaDaoImpl"></bean>
+	<bean id="partecipanteDao" class="org.fluidlearn.dao.impl.PartecipanteDaoImpl"></bean>
+	<bean id="prototipoDao" class="org.fluidlearn.dao.impl.PrototipoDaoImpl"></bean>
+	<bean id="RelazioneDao" class="org.fluidlearn.dao.impl.RelazioneDaoImpl"></bean>
+	<bean id="risorsaDao" class="org.fluidlearn.dao.impl.RisorsaDaoImpl"></bean>
+	<bean id="rispostaDao" class="org.fluidlearn.dao.impl.RispostaDaoImpl"></bean>
+	<bean id="ruoloDao" class="org.fluidlearn.dao.impl.RuoloDaoImpl"></bean>
+	<bean id="sollecitazioneDao" class="org.fluidlearn.dao.impl.SollecitazioneDaoImpl"></bean>
+	<bean id="testoDao" class="org.fluidlearn.dao.impl.TestoDaoImpl"></bean>
+	<bean id="unitaDADao" class="org.fluidlearn.dao.impl.UnitaDADaoImpl"></bean>
 	
+		<!-- creo dei bean da inserire poi nel db per i test -->
+	<bean id="docente" class="org.fluidlearn.core.model.attori.PartecipanteConcreto">
+		<constructor-arg value="Rupert" />
+		<constructor-arg value="abba1234" />
+		<constructor-arg value="rupert@gmail.com" />
+		<constructor-arg value="Rupert" />
+		<constructor-arg value="Smith" />
+	</bean>
 	
+	<bean id="studente1" class="org.fluidlearn.core.model.attori.PartecipanteConcreto">
+		<constructor-arg value="Giovanni" />
+		<constructor-arg value="progetto" />
+		<constructor-arg value="giovanni@gmail.com" />
+		<constructor-arg value="Giovanni" />
+		<constructor-arg value="Siragusa" />
+	</bean>
 	
-	<!-- creo dei bean da inserire poi nel db per i test -->
+	<bean id="studente2" class="org.fluidlearn.core.model.attori.PartecipanteConcreto">
+		<constructor-arg value="Geanina" />
+		<constructor-arg value="geanina" />
+		<constructor-arg value="geanina@gmail.com" />
+		<constructor-arg value="Geanina" />
+		<constructor-arg value="Sporis" />
+	</bean>
+	
+	<bean id="docente" class="org.fluidlearn.core.model.attori.Docente">
+		<constructor-arg ref="docente" />
+	</bean>
+	
+	<bean id="studente1" class="org.fluidlearn.core.model.attori.Studente">
+		<constructor-arg ref="studente1" />
+	</bean>
+	
+	<bean id="studente1" class="org.fluidlearn.core.model.attori.Studente">
+		<constructor-arg ref="studente2" />
+	</bean>
+	
+	<bean id="nodo1" class="org.fluidlearn.core.model.unitadidattica.NodoSemplice">
+		<constructor-arg value="Informatica" />
+		<constructor-arg value="Il corso propone..." />
+	</bean>
+	
+	<bean id="nodo2" class="org.fluidlearn.core.model.unitadidattica.NodoSemplice">
+		<constructor-arg value="Matematica" />
+		<constructor-arg value="Il corso propone..." />
+	</bean>
+	
+	<bean id="relazione" class="org.fluidlearn.core.model.unitadidattica.Relazione">
+		<constructor-arg value="Conoscenza di base" />
+		<constructor-arg value="Per l'esame di informatica..." />
+		<constructor-arg ref="nodo1" />
+		<constructor-arg ref="nodo2" />
+	</bean>
+	
+	<bean id="uda" class="org.fluidlearn.core.model.unitadidattica.UnitaDA">
+		<constructor-arg value="Array in java" />
+		<constructor-arg value="Il corso partirà..." />
+		<constructor-arg value="in svolgimento" />
+	</bean>
+	
+	<bean id="mappa" class="org.fluidlearn.core.model.unitadidattica.Mappa">
+		<property name="nodi">
+			<list>
+				<ref bean="nodo1" />
+				<ref bean="nodo2" />
+ 			</list>
+ 		</property>
+		<property name="relazioni">
+			<list>
+				<ref bean="relazione" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="corso" class="org.fluidlearn.core.model.Corso">
+		<property name="nome" value="programmaziona avanzata in java" />
+		<property name="mappa" value="mappa" />
+		<property name="descrizione" value="si partirà rivedendo gli array" />
+		<property name="partecipanti">
+			<list>
+				<ref bean="studente1" />
+				<ref bean="studente2" />
+				<ref bean="docente" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="data" class="org.fluidlearn.core.model.Date">
+		<constructor-arg value="05" />
+		<constructor-arg value="09" />
+		<constructor-arg value="2013" />
+	</bean>
+	
+	<bean id="data_scadenza" class="org.fluidlearn.core.model.Date">
+		<constructor-arg value="05" />
+		<constructor-arg value="12" />
+		<constructor-arg value="2013" />
+	</bean>
+	
+	<bean id="testo" class="org.fluidlearn.modle.corpo.Testo">
+		<constructor-arg value="00123L" />
+		<constructor-arg value="lorem ipsum sit dolor amet" />
+	</bean>
+	
+	<bean id="corpo" class="org.fluidlearn.model.corpo.Corpo">
+	
+	</bean>
+	
+	<!-- crezione di alcuni post da poter visualizzare -->
+	
+	<!-- creazione di alcuni compiti da poter visualizzare -->
+	<bean id="compito1" class="org.fluidlearn.core.model.compito.Sollecitazione">
+		<constructor-arg ref="data" />
+		<constructor-arg value="2" />
+		<constructor-arg value="false" />
+		<constructor-arg > <null /> </constructor-arg>
+		<constructor-arg ref="nodo1" />
+		<constructor-arg ref="uda" />
+		<constructor-arg ref="corpo" />
+		<constructor-arg value="doler ipsum" />
+		<constructor-arg ref="data_scadenza" />
+		<constructor-arg ref="studente2" />
+	</bean>
+	
+	<bean id="compito2" class="org.fluidlearn.core.model.compito.Sollecitazione">
+		<constructor-arg ref="data" />
+		<constructor-arg value="2" />
+		<constructor-arg value="false" />
+		<constructor-arg ref="null" />
+		<constructor-arg ref="nodo2" />
+		<constructor-arg ref="uda" />
+		<constructor-arg ref="corpo" />
+		<constructor-arg value="doler ipsum" />
+		<constructor-arg ref="data_scadenza" />
+		<constructor-arg ref="studente1" />
+	</bean>
+
 	
 
 	<!-- Proxy verso il target object per AOP -->

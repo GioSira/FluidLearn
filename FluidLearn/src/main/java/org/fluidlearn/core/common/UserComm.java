@@ -1,7 +1,9 @@
 package org.fluidlearn.core.common;
 
-import org.fluidlearn.core.dao.UtenteDao;
 import org.fluidlearn.core.model.User;
+import org.fluidlearn.core.model.attori.PartecipanteConcreto;
+import org.fluidlearn.core.model.attori.Utente;
+import org.fluidlearn.dao.UtenteDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,24 +17,24 @@ public class UserComm {
     	ApplicationContext appContext = 
         		new ClassPathXmlApplicationContext("spring/config/beans.xml");
     	
-        UtenteDao userDao = (UtenteDao)appContext.getBean("userDao");
+        UtenteDao userDao = (UtenteDao)appContext.getBean("utenteDao");
 		
         
-        User user = new User(00001L, "Giovanni", "pincopallo");
+        Utente user = new PartecipanteConcreto("Giovanni", "pincopallo", "giovanni@gmail.com", "Giovanni", "Siragusa");
         
         /* inserimento */
         userDao.insert(user);
         System.out.println(user.toString());
         
         /* aggiornamento */
-        user.setPwd(user.getPwd()+"02");
+        user.setPassword(user.getPassword()+"02");
         userDao.update(user);
         System.out.println(user.toString());
         
         /* estrazione e modifica */
-        User user2 = userDao.searchByPK(user.getId());
-        user2.setUsername("Luca");
-        user2.setPwd("ciccio");
+        Utente user2 = userDao.searchByPK(user.getId());
+        user2.setUser("Luca");
+        user2.setPassword("ciccio");
         userDao.insert(user2);
         System.out.println(user2.toString());
         

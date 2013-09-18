@@ -1,6 +1,6 @@
 package org.fluidlearn.core.model.corpo;
 
-import org.fluidlearn.core.controller.PluginController;
+import org.fluidlearn.controller.PluginController;
 
 public abstract class Corpo {
 

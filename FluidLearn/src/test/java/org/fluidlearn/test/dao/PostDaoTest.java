@@ -2,8 +2,8 @@ package org.fluidlearn.test.dao;
 
 import static org.junit.Assert.*;
 
-import org.fluidlearn.core.dao.PostDao;
 import org.fluidlearn.core.model.Post;
+import org.fluidlearn.dao.PostDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

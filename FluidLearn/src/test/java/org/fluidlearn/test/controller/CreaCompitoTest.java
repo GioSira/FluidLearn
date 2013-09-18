@@ -1,6 +1,6 @@
 package org.fluidlearn.test.controller;
 
-import org.fluidlearn.core.controller.CompitoController;
+import org.fluidlearn.controller.CompitoController;
 import org.fluidlearn.core.model.Corso;
 import org.fluidlearn.core.model.attori.Docente;
 import org.fluidlearn.core.model.attori.Partecipante;
@@ -10,11 +10,9 @@ import org.fluidlearn.core.model.unitadidattica.Nodo;
 import org.fluidlearn.core.model.unitadidattica.NodoSemplice;
 import org.fluidlearn.core.model.unitadidattica.Relazione;
 import org.fluidlearn.core.model.unitadidattica.UnitaDA;
-import org.junit.Test;
 
 public class CreaCompitoTest {
 
-	@Test
 	public void testCreazioneCompito() {
 		
 		// creo un partecipante
@@ -46,7 +44,7 @@ public class CreaCompitoTest {
 		UnitaDA uda = new UnitaDA();
 		uda.setTitolo("Array in java");
 		uda.setDescrizione("si vedrà come realizzare...");
-		uda.setStato("in svolgimento svolgere");
+		uda.setStato("svolgere");
 		
 		// creo un corso
 		Corso corso = new Corso();
